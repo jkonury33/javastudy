@@ -24,3 +24,20 @@ local.properties
 
 # PDT-specific
 .buildpath
+
+# 인텔리J ignore
+
+target
+build
+bin
+*~
+*.log
+.project
+*.ipr
+*.iws
+*.iml
+.git
+*.class
+.idea/
+.idea/**
+.idea/**/*
