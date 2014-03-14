@@ -41,3 +41,5 @@ bin
 .idea/
 .idea/**
 .idea/**/*
+/org.bin
+/stream.ucls
