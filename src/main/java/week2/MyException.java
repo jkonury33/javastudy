@@ -5,6 +5,8 @@ package week2;
  * @since 2014.03.02
  */
 public class MyException extends Exception {
+    private static final long serialVersionUID = 8473203856977931704L;
+    
     private final int ERR_CODE;
 
     public MyException() {

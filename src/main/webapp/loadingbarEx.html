@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> New Document </title>
+  <meta charset="UTF-8"/>
+  
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script>
+  /*
+  *  url : http://www.shop-wiz.com 
+  *  usage : $(this).loadingbar();  추천: $("body").loadingbar()
+  */
+
+  (function($) {
+      $.fn.loadingbar = function(options) {
+          
+          var opt = {
+              url:"http://mall.shop-wiz.com/images/common/loading.swf",
+              //url:"loading.swf",
+              width:100,
+              height:28
+          };
+          
+          $.extend(opt, options);
+          
+          //this.each(function(){
+              var element = $(this);
+              var win = $(window);
+              
+              var x = win.width();
+              var y = win.height();
+              
+              var flashobj = "";
+              var flashobj = flashobj + "<object classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' codebase='http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0' width='"+opt.width+"' height='"+opt.height+"'>";
+              var flashobj = flashobj + "<param name='allowScriptAccess' value='always' /> ";
+              var flashobj = flashobj + "<param name='movie' value='"+opt.url+"' /> ";
+              var flashobj = flashobj + "<param name='quality' value='high' /> ";
+              var flashobj = flashobj + "<param name='wmode' value='transparent'> ";
+              var flashobj = flashobj + "<embed src='"+opt.url+"' quality='high' width='"+opt.width+"' height='"+opt.height+"' wmode='transparent' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' />";
+              var flashobj = flashobj + "</object>";
+
+              $('#Loadingbarimg').remove();
+              element.append('<div id="Loadingbarimg" style="display:block"></div>');
+              $("#Loadingbarimg").html(flashobj);
+               $("#Loadingbarimg").css({"position":"absolute","z-index":1000, "opacity": 0.9});
+              $("#Loadingbarimg").css("left", win.scrollLeft() + x/2 - $("#Loadingbarimg").width()/2);
+              $("#Loadingbarimg").css("top", win.scrollTop() + y/2 - $("#Loadingbarimg").height()/2);    
+              
+
+      //    });
+          //return this;
+      };
+  })(jQuery);
+  </script>
+  <script type="text/javascript">
+    
+    $(document).ready(function(){
+        
+        var time_id;
+
+        $("#sample_id").click(function(){
+            $("body").loadingbar();//로딩바를 가져온다.
+            $.post("doloop.php",{}, function(data){
+                $("#Loadingbarimg").hide();//로딩바를 숨긴다
+            })
+    });
+});
+  </script>
+ </head>
+
+ <body>
+    <div id="sample_id">서버에 전송</div>
+    
+ </body>
+</html>

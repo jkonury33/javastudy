@@ -10,5 +10,6 @@ public class JunitExceptionTest {
     @Test(expected = RuntimeException.class)
     public void test(){
         int x = 10 / 0;
+        System.out.println(x);
     }
 }
